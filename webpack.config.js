@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 const path = require('path');
 module.exports = {
   entry:{
@@ -11,9 +12,21 @@ module.exports = {
     clean:true,
     path: path.resolve(__dirname, 'docs'),
   },
+
+  
     plugins: [
+
+      new CopyPlugin ({
+        patterns:[
+  {from: "public", to: ""}
+        ],
+      }),
+
+
+
+
       new HtmlWebpackPlugin({
-        filename: 'login.html',
+        filename: 'index.html',
        template:'./src/templates/login.html',
        
          chunks:["login"]
@@ -43,7 +56,7 @@ module.exports = {
 
      chunks:['home']
        })
-       
+     
     ],
     module: {
         rules: [
